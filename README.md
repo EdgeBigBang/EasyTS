@@ -67,3 +67,17 @@ EasyTS extends a versatile array of analytical tools, elegantly illustrated in F
     color: #999;
     padding: 2px;">Figure 3: Various analytical tools provided by EasyTS</div>
 </div>
+
+## Convenient Model Verification Interface
+Based on the two aspects mentioned above, scholars can swiftly design their own models within the toolkit's specified modules. EasyTS provides diverse time-series evaluation metrics, such as MSE, MAE, DDTW, CORR, RMSE, to objectively assess the sophistication of the models, with the scoring results displayed in Figure 4.
+
+<div style="text-align: center;">
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="pic/Metrics.png">
+    <br>
+    <div style="text-align: center; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 4: Diverse time-series evaluation metrics</div>
+</div>
