@@ -1,5 +1,4 @@
 import os
-
 import pandas as pd
 import torch
 import random
@@ -7,17 +6,18 @@ import numpy as np
 import argparse
 from score import Score
 ## Define the subset of dataset class to use here:
-MD_SubDataset = ['live_huya_shixu.csv']
+Electricity_SubDataset = ["FOOD1.csv", "FOOD2.csv"]
 
+# seed
 fix_seed = 2021
 random.seed(fix_seed)
 torch.manual_seed(fix_seed)
 np.random.seed(fix_seed)
 
-parser = argparse.ArgumentParser(description='dataset for timeseries')
+parser = argparse.ArgumentParser(description='EasyTS: The Express Lane to Long Time Series Forecasting')
 
 ## Define the dataset class to use here:
-parser.add_argument('--dataset_class', type=list, default=['MD'], help='Data class for running points')
+parser.add_argument('--dataset_class', type=list, default=['Electricity'], help='Data class for evaluation')
 
 ## Define the model to be used here:
 parser.add_argument('--model', type=str, default='DLinear', help='model name')
@@ -30,7 +30,6 @@ parser.add_argument('--output_attention', action='store_true', help='whether to 
 # Training settings
 parser.add_argument('--is_training', type=int, default=1, help='status')
 parser.add_argument('--checkpoints_path', type=str, default='./checkpoints/', help='location of model checkpoints')
-
 parser.add_argument('--embed', type=str, default='timeF',
                     help='time features encoding, options:[timeF, fixed, learned]')
 
@@ -42,9 +41,9 @@ parser.add_argument('--target', type=str, default='2', help='target feature in S
 parser.add_argument('--features', type=str, default='S',
                     help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, '
                          'S:univariate predict univariate, MS:multivariate predict univariate')
-parser.add_argument('--seq_len', type=int, default=5, help='input sequence length')
-parser.add_argument('--label_len', type=int, default=5, help='start token length')
-parser.add_argument('--pred_len', type=int, default=1, help='prediction sequence length')
+parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
+parser.add_argument('--label_len', type=int, default=48, help='start token length')
+parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
 
 # Optimization
 parser.add_argument('--batch_size', type=int, default=1, help='batch size of train input data')
@@ -67,8 +66,8 @@ args = parser.parse_args()
 
 
 if args.is_training:
-    # Reading Different Dataset Class
     sign = 1
+    # Reading Different Dataset Class
     for i in range(len(args.dataset_class)):
         current_dataset = args.dataset_class[i]
         subdataset = eval(current_dataset + '_SubDataset')
@@ -97,13 +96,14 @@ if args.is_training:
                 print('####  start testing : {}##########'.format(current_setting))
                 metrics_dict = score.test(current_setting)
                 temp_df = pd.DataFrame([metrics_dict])
-                metrics_df = pd.concat([metrics_df,temp_df], axis=0)
+                metrics_df = pd.concat([metrics_df, temp_df], axis=0)
                 torch.cuda.empty_cache()
-
+            # Calculate the average score for multiple iterations
             itr_means = pd.DataFrame(metrics_df.mean()).T
             itr_means.insert(0, 'dataset', ii)
             itr_means.insert(0, 'model', args.model)
-            # 保存 DataFrame 到 CSV 文件（如果文件不存在，则创建；如果已存在，将追加数据）
+            # Save result to CSV file (create if it doesn't exist; append data if it already exists)
+            # 这里路径的改一下 改成结果下的路径
             if sign:
                 itr_means.to_csv('metrics.csv', mode='w',index=False)
                 sign = 0

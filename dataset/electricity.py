@@ -8,7 +8,8 @@ from utils.timefeatures import time_features
 import warnings
 warnings.filterwarnings('ignore')
 
-SubDataset = ['ETTh1.csv','ETTh2.csv','ETTm1.csv','ETTm2.csv','electricity.csv']
+SubDataset = ['ETTh1.csv','ETTh2.csv','ETTm1.csv','ETTm2.csv','electricity.csv','FOOD1.csv', 'FOOD2.csv', 'FOOD3.csv',
+              'MANU1.csv', 'PHAR1.csv', 'PHAR2.csv', 'OFFICE1.csv']
 URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Electricity/{}.csv'
 logging.basicConfig(level=logging.DEBUG)
 
@@ -128,7 +129,7 @@ class Dataset_Electricity(Dataset):
 
 def data_provider_electricity(args, flag):
     """
-    Provide Electricity data. list:['ETTh1.csv','ETTh2.csv','ETTm1.csv','ETTm2.csv','electricity.csv']
+    Provide Electricity data. list:['ETTh1.csv','ETTh2.csv','ETTm1.csv',...,'OFFICE1.csv']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 
@@ -144,6 +145,7 @@ def data_provider_electricity(args, flag):
         freq = args.freq
 
     data_set = Dataset_Electricity(
+        # 这个路径需要指定吗？
         dataset_path=args.dataset_path,
         data_path=args.data_path,
         size=[args.seq_len, args.label_len, args.pred_len],
@@ -163,4 +165,5 @@ def data_provider_electricity(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Electricity.download()
+    # Download a specific subset of data separately
+    Dataset_Electricity.download('FOOD1.csv')
