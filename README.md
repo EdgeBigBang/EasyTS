@@ -1,7 +1,6 @@
 #  EasyTS: The Express Lane to Long Time Series Forecasting
 
-We introduce EasyTS, a compre-
-hensive toolkit engineered to streamline the complex procedures of data collection, analysis, and model creation.  
+We introduce EasyTS, a comprehensive toolkit engineered to streamline the complex procedures of data collection, analysis, and model creation.  
 
 [//]: # (### Paper)
 
@@ -23,7 +22,7 @@ EasyTS provides diverse evaluation metrics and benchmark
 models to ensure comprehensive and in-depth model evalu-
 ation.
 
-<center>
+<div style="text-align: center;">
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/EasyTS_overview.png">
@@ -32,7 +31,7 @@ ation.
     display: inline-block;
     color: #999;
     padding: 2px;">Figure 1: An overview of EasyTS</div>
-</center>
+</div>
 
 
 ## Rich One-stop Datasets Service
@@ -41,7 +40,7 @@ EasyTS currently encompasses multiple datasets from six different domains around
 with specific details provided in Figure 2. EasyTS introduces four novel opensource datasets related to electrical energy: FOOD, MANU,
 PHAR, and OFFICE (Red indicates).
 
-<center>
+<div style="text-align: center;">
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/Dataset.png">
@@ -50,7 +49,7 @@ PHAR, and OFFICE (Red indicates).
     display: inline-block;
     color: #999;
     padding: 2px;">Figure 2: Datasets included in EasyTS</div>
-</center>
+</div>
 
 For detailed information about the dataset, please refer to the readme file in the "dataset" folder.
 
@@ -58,7 +57,7 @@ For detailed information about the dataset, please refer to the readme file in t
 
 EasyTS extends a versatile array of analytical tools, elegantly illustrated in Figure 3.
 
-<center>
+<div style="text-align: center;">
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/Tools.png">
@@ -66,5 +65,5 @@ EasyTS extends a versatile array of analytical tools, elegantly illustrated in F
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">Figure 2: Datasets included in EasyTS</div>
-</center>
+    padding: 2px;">Figure 3: Various analytical tools provi</div>
+</div>
