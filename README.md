@@ -27,7 +27,7 @@ ation.
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/EasyTS_overview.png">
     <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <div style="color:orange; text-align: center; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
     padding: 2px;">Figure 1: An overview of EasyTS</div>
@@ -45,7 +45,7 @@ PHAR, and OFFICE (Red indicates).
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/Dataset.png">
     <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <div style="color:orange; text-align: center; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
     padding: 2px;">Figure 2: Datasets included in EasyTS</div>
@@ -62,8 +62,8 @@ EasyTS extends a versatile array of analytical tools, elegantly illustrated in F
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
     src="pic/Tools.png">
     <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <div style="color:orange; text-align: center; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">Figure 3: Various analytical tools provi</div>
+    padding: 2px;">Figure 3: Various analytical tools provided by EasyTS</div>
 </div>
