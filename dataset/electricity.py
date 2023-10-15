@@ -8,8 +8,8 @@ from utils.timefeatures import time_features
 import warnings
 warnings.filterwarnings('ignore')
 
-SubDataset = ['ETTh1.csv','ETTh2.csv','ETTm1.csv','ETTm2.csv','electricity.csv','FOOD1.csv', 'FOOD2.csv', 'FOOD3.csv',
-              'MANU1.csv', 'PHAR1.csv', 'PHAR2.csv', 'OFFICE1.csv']
+DATASET_PATH = '../Electricity/'
+SubDataset = ['FOOD1', 'FOOD2', 'FOOD3','MANU1', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
 URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Electricity/{}.csv'
 logging.basicConfig(level=logging.DEBUG)
 
@@ -112,16 +112,19 @@ class Dataset_Electricity(Dataset):
         return self.scaler.inverse_transform(data)
 
     @staticmethod
-    def download(dataset_path, data_path):
-        """
-        Download Electricity dataset if doesn't exist.
+    def download(dataset_path, subdataset):
+        """Download Electricity dataset if doesn't exist.
+
+           Args:
+                dataset_path(str): The path where the downloaded dataset is stored
+                subdataset(str): The subdataset to be downloaded
         """
         if not os.path.isdir(dataset_path):
             os.makedirs(dataset_path)
             logging.info(f' {dataset_path} does not exist, creation successful.')
-        assert data_path in SubDataset
-        URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/MD/{}'
-        URL = URL_TEMPLATE.format(data_path)
+        assert subdataset in SubDataset
+        URL = URL_TEMPLATE.format(subdataset)
+        data_path = subdataset + ".csv"
         FILE_PATH = os.path.join(dataset_path, data_path)
 
         download(URL, FILE_PATH)
@@ -129,7 +132,7 @@ class Dataset_Electricity(Dataset):
 
 def data_provider_electricity(args, flag):
     """
-    Provide Electricity data. list:['ETTh1.csv','ETTh2.csv','ETTm1.csv',...,'OFFICE1.csv']
+    Provide Electricity data. list:['FOOD1', 'FOOD2', 'FOOD3','MANU1', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 
@@ -166,4 +169,4 @@ def data_provider_electricity(args, flag):
 
 if __name__ == '__main__':
     # Download a specific subset of data separately
-    Dataset_Electricity.download('FOOD1.csv')
+    Dataset_Electricity.download(DATASET_PATH, 'OFFICEh')

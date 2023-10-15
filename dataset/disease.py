@@ -115,7 +115,7 @@ class Dataset_Disease(Dataset):
 
     @staticmethod
     def download(dataset_path, subdataset):
-        """Download Electricity dataset if doesn't exist.
+        """Download Disease dataset if doesn't exist.
 
            Args:
                 dataset_path(str): The path where the downloaded dataset is stored
@@ -133,7 +133,7 @@ class Dataset_Disease(Dataset):
 
 def data_provider_disease(args, flag):
     """
-    Provide Traffic data. list:['illness']
+    Provide Disease data. list:['illness']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 

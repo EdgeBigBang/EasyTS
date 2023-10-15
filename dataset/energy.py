@@ -115,7 +115,7 @@ class Dataset_Energy(Dataset):
 
     @staticmethod
     def download(dataset_path, subdataset):
-        """Download Electricity dataset if doesn't exist.
+        """Download Energy dataset if doesn't exist.
 
            Args:
                 dataset_path(str): The path where the downloaded dataset is stored
@@ -133,7 +133,7 @@ class Dataset_Energy(Dataset):
 
 def data_provider_energy(args, flag):
     """
-    Provide Traffic data. list:['Weather']
+    Provide Energy data. list:['Weather']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 
