@@ -83,3 +83,12 @@ Based on the two aspects mentioned above, scholars can swiftly design their own 
     color: #999;
     padding: 2px;">Figure 4: Diverse time-series evaluation metrics</div>
 </div>
+
+# Acknowledgement
+We appreciate the following github repos a lot for their valuable code base or datasets:
+
+https://github.com/hsy23/KDD23_DynEformer
+
+https://github.com/DAMO-DI-ML/ICML2022-FEDformer
+
+https://github.com/thuml/Time-Series-Library
