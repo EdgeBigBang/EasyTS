@@ -8,15 +8,15 @@ from utils.timefeatures import time_features
 import warnings
 warnings.filterwarnings('ignore')
 
-DATASET_PATH = '../Traffic/'
-SubDataset = ['traffic.csv']
-URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/traffic/{}.csv'
+DATASET_PATH = '../Transportation/'
+SubDataset = ['traffic','METR_LA','PEMS_BAY']
+URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Transportation/{}.csv'
 DATASET_URLS = [URL_TEMPLATE.format(sub) for sub in SubDataset]
 FILE_PATHS = [os.path.join(DATASET_PATH, file_name(url)) for url in DATASET_URLS]
 logging.basicConfig(level=logging.DEBUG)
 
 # Inherit Dataset
-class Dataset_Traffic(Dataset):
+class Dataset_Transportation(Dataset):
     def __init__(self, dataset_path, data_path, size, flag='train',
                  features='S', target='OT', scale=True, timeenc=0, freq='5min'):
 
@@ -114,24 +114,27 @@ class Dataset_Traffic(Dataset):
         return self.scaler.inverse_transform(data)
 
     @staticmethod
-    def download(dataset_path, data_path):
-        """
-        Download Traffic dataset if doesn't exist.
+    def download(dataset_path, subdataset):
+        """Download Electricity dataset if doesn't exist.
+
+           Args:
+                dataset_path(str): The path where the downloaded dataset is stored
+                subdataset(str): The subdataset to be downloaded
         """
         if not os.path.isdir(dataset_path):
             os.makedirs(dataset_path)
             logging.info(f' {dataset_path} does not exist, creation successful.')
-        assert data_path in SubDataset
-        URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/MD/{}'
-        URL = URL_TEMPLATE.format(data_path)
+        assert subdataset in SubDataset
+        URL = URL_TEMPLATE.format(subdataset)
+        data_path = subdataset + ".csv"
         FILE_PATH = os.path.join(dataset_path, data_path)
 
         download(URL, FILE_PATH)
 
 
-def data_provider_traffic(args, flag):
+def data_provider_transportation(args, flag):
     """
-    Provide Traffic data. list:['traffic.csv']
+    Provide Traffic data. list:['traffic','METR_LA','PEMS_BAY']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 
@@ -146,7 +149,7 @@ def data_provider_traffic(args, flag):
         batch_size = args.batch_size
         freq = args.freq
 
-    data_set = Dataset_Traffic(
+    data_set = Dataset_Transportation(
         dataset_path=args.dataset_path,
         data_path=args.data_path,
         size=[args.seq_len, args.label_len, args.pred_len],
@@ -166,4 +169,4 @@ def data_provider_traffic(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Traffic.download()
+    Dataset_Transportation.download(DATASET_PATH, 'METR_LA')
