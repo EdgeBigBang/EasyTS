@@ -10,7 +10,6 @@ logging.basicConfig(level=logging.INFO)
 ## If adding a custom dataset, please import it in the file
 from dataset.cloud import Dataset_Cloud
 from dataset.electricity import Dataset_Electricity
-from dataset.md import Dataset_MD
 from dataset.traffic import Dataset_Traffic
 from torch.utils.data import DataLoader
 
