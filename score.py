@@ -8,9 +8,12 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 ## If adding a custom dataset, please import it in the file
-from dataset.cloud import Dataset_Cloud
 from dataset.electricity import Dataset_Electricity
-from dataset.traffic import Dataset_Traffic
+from dataset.transportation import Dataset_Transportation
+from dataset.energy import Dataset_Energy
+from dataset.disease import Dataset_Disease
+from dataset.weather import Dataset_Weather
+
 from torch.utils.data import DataLoader
 
 ## If adding a custom model, please import it in the file
@@ -39,10 +42,11 @@ class Score():
     def _get_data(self, flag):
         ## If adding a custom dataset, please add an entry here and import it in the file
         data_dict = {
-            'MD': Dataset_MD,
-            'traffic': Dataset_Traffic,
+            'transportation': Dataset_Transportation,
             'electricity': Dataset_Electricity,
-            'cloud': Dataset_Cloud,
+            'energy': Dataset_Energy,
+            'disease': Dataset_Disease,
+            'weather': Dataset_Weather
         }
 
         Data = data_dict[self.current_dataset]

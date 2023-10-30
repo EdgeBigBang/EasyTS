@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 DATASET_PATH = '../Electricity/'
-SubDataset = ['FOOD1', 'FOOD2', 'FOOD3','MANU1', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
+SubDataset = ['FOOD1', 'FOOD2', 'FOOD3','MANU', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
 URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Electricity/{}.csv'
 logging.basicConfig(level=logging.DEBUG)
 
@@ -132,7 +132,7 @@ class Dataset_Electricity(Dataset):
 
 def data_provider_electricity(args, flag):
     """
-    Provide Electricity data. list:['FOOD1', 'FOOD2', 'FOOD3','MANU1', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
+    Provide Electricity data. list:['FOOD1', 'FOOD2', 'FOOD3','MANU', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
     """
     timeenc = 0 if args.embed != 'timeF' else 1
 
