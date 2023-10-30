@@ -51,7 +51,7 @@ class Score():
 
         Data = data_dict[self.current_dataset]
         # Download dataset
-        data_path = Data.download(self.dataset)
+        data_path, dataset_path = Data.download(self.dataset)
 
         timeenc = 0 if self.args.embed != 'timeF' else 1
         # Test
@@ -69,6 +69,7 @@ class Score():
 
         data_set = Data(
             data_path=data_path,
+            dataset_path = dataset_path,
             flag=flag,
             size=[self.args.seq_len, self.args.label_len, self.args.pred_len],
             features=self.args.features,

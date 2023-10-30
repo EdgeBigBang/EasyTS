@@ -8,7 +8,7 @@ from utils.timefeatures import time_features
 import warnings
 warnings.filterwarnings('ignore')
 
-DATASET_PATH = '../Energy/'
+DATASET_PATH = './Energy/'
 SubDataset = ['Solar', 'Wind']
 URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Energy/{}.csv'
 DATASET_URLS = [URL_TEMPLATE.format(sub) for sub in SubDataset]
@@ -114,7 +114,7 @@ class Dataset_Energy(Dataset):
         return self.scaler.inverse_transform(data)
 
     @staticmethod
-    def download(dataset_path, subdataset):
+    def download(subdataset, dataset_path=DATASET_PATH):
         """Download Energy dataset if doesn't exist.
 
            Args:
@@ -130,6 +130,8 @@ class Dataset_Energy(Dataset):
         FILE_PATH = os.path.join(dataset_path, data_path)
 
         download(URL, FILE_PATH)
+
+        return data_path, dataset_path
 
 def data_provider_energy(args, flag):
     """

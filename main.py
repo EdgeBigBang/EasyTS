@@ -6,7 +6,7 @@ import numpy as np
 import argparse
 from score import Score
 ## Define the subset of dataset class to use here:
-Electricity_SubDataset = ["FOOD1.csv", "FOOD2.csv"]
+Electricity_SubDataset = ["FOOD1", "FOOD2"]
 
 # seed
 fix_seed = 2021
@@ -37,7 +37,7 @@ parser.add_argument('--embed', type=str, default='timeF',
 parser.add_argument('--freq', type=str, default='t',
                     help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, '
                          'b:business days, w:weekly, m:monthly], you can also use more detailed freq like 15min or 3h')
-parser.add_argument('--target', type=str, default='2', help='target feature in S or MS task following by Informer')
+parser.add_argument('--target', type=str, default='OT', help='target feature in S or MS task following by Informer')
 parser.add_argument('--features', type=str, default='S',
                     help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, '
                          'S:univariate predict univariate, MS:multivariate predict univariate')
