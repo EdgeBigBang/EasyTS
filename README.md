@@ -111,7 +111,7 @@ Based on the two aspects mentioned above, scholars can swiftly design their own 
     
     b. Modify the model name in 'main.py', as well as the dataset type and the corresponding sub-dataset name you wish to use.
     
-    c.Simply run the 'main.py' method.
+    c. Simply run the 'main.py' method.
 
     ```python
     # score.py:
