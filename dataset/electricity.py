@@ -169,4 +169,4 @@ def data_provider_electricity(args, flag):
 
 if __name__ == '__main__':
     # Download a specific subset of data separately
-    Dataset_Electricity.download(DATASET_PATH, 'OFFICEh')
+    Dataset_Electricity.download(DATASET_PATH, 'FOOD1')

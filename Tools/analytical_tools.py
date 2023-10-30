@@ -323,7 +323,7 @@ def draw_ma_decomp(file_path, window_size=24):
 if __name__ == "__main__":
     ## Dataset Path
     # file_path = "../Electricity/OFFICEh.csv"
-    file_path = "../Electricity/OFFICEm.csv"
+    file_path = "../Electricity/FOOD1.csv"
 
     ## Using different analytical methods
     # draw_month(file_path)
@@ -331,8 +331,8 @@ if __name__ == "__main__":
     # draw_frequency_max(file_path, '1D')
     # draw_histogram(file_path)
     # draw_box(file_path)
-    # draw_line_with_slider(file_path)
+    draw_line_with_slider(file_path)
     # hide_weekend_or_workday(file_path)
     # hide_hour(file_path)
-    draw_FFT_count(file_path)
+    # draw_FFT_count(file_path)
     # draw_ma_decomp(file_path)

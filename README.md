@@ -84,6 +84,54 @@ Based on the two aspects mentioned above, scholars can swiftly design their own 
     padding: 2px;">Figure 4: Diverse time-series evaluation metrics</div>
 </div>
 
+* * *
+
+# Usage
+1. Dataset downloaded separately
+    
+    Invoke the 'download' method in the corresponding data class(Are placed in the 'dataset' directory), 
+    and provide the download directory and the name of the dataset to be downloaded.
+    
+    ```python
+    Dataset_Electricity.download(DATASET_PATH, 'FOOD1')
+    ```
+
+2. Data analysis tools
+
+    All data analysis functions are located in the 'analytical_tools.py' file under the 'Tools' directory.
+    
+    ```python
+    file_path = "../Electricity/FOOD1.csv"
+    draw_line_with_slider(file_path)
+    ```
+
+3. Train and validate the model
+    
+    a. Place your personal model files in the 'models' folder and import the personal model module in 'score.py'.
+    
+    b. Modify the model name in 'main.py', as well as the dataset type and the corresponding sub-dataset name you wish to use.
+    
+    c.Simply run the 'main.py' method.
+
+    ```python
+    # score.py:
+        ## If adding a custom model, please import it in the file
+        from models import DLinear
+   
+    # main.py:
+        ## Define the subset of dataset class to use here:
+        Electricity_SubDataset = ["FOOD1.csv", "FOOD2.csv"]
+   
+        ## Define the dataset class to use here:
+        parser.add_argument('--dataset_class', type=list, default=['Electricity'], help='Data class for evaluation')
+
+        ## Define the model to be used here:
+        parser.add_argument('--model', type=str, default='DLinear', help='model name')
+   
+   python main.py
+    ```
+    
+
 # Acknowledgement
 We appreciate the following github repos a lot for their valuable code base or datasets:
 
