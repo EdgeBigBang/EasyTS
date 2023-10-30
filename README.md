@@ -135,6 +135,8 @@ Based on the two aspects mentioned above, scholars can swiftly design their own 
 # Acknowledgement
 We appreciate the following github repos a lot for their valuable code base or datasets:
 
+https://github.com/cure-lab/LTSF-Linear
+
 https://github.com/hsy23/KDD23_DynEformer
 
 https://github.com/DAMO-DI-ML/ICML2022-FEDformer
