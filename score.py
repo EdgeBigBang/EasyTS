@@ -42,11 +42,11 @@ class Score():
     def _get_data(self, flag):
         ## If adding a custom dataset, please add an entry here and import it in the file
         data_dict = {
-            'transportation': Dataset_Transportation,
-            'electricity': Dataset_Electricity,
-            'energy': Dataset_Energy,
-            'disease': Dataset_Disease,
-            'weather': Dataset_Weather
+            'Transportation': Dataset_Transportation,
+            'Electricity': Dataset_Electricity,
+            'Energy': Dataset_Energy,
+            'Disease': Dataset_Disease,
+            'Weather': Dataset_Weather
         }
 
         Data = data_dict[self.current_dataset]

@@ -17,7 +17,7 @@ np.random.seed(fix_seed)
 parser = argparse.ArgumentParser(description='EasyTS: The Express Lane to Long Time Series Forecasting')
 
 ## Define the dataset class to use here:
-parser.add_argument('--dataset_class', type=list, default=['electricity'], help='Data class for evaluation')
+parser.add_argument('--dataset_class', type=list, default=['Electricity'], help='Data class for evaluation')
 
 ## Define the model to be used here:
 parser.add_argument('--model', type=str, default='DLinear', help='model name')
