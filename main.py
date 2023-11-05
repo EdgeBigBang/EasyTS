@@ -6,7 +6,7 @@ import numpy as np
 import argparse
 from score import Score
 ## Define the subset of dataset class to use here:
-Electricity_SubDataset = ["FOOD1", "FOOD2"]
+Electricity_SubDataset = ["FOOD1"]
 
 # seed
 fix_seed = 2021
@@ -64,6 +64,13 @@ parser.add_argument('--devices', type=str, default='0,1', help='device ids of mu
 
 args = parser.parse_args()
 
+args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
+
+if args.use_gpu and args.use_multi_gpu:
+    args.dvices = args.devices.replace(' ', '')
+    device_ids = args.devices.split(',')
+    args.device_ids = [int(id_) for id_ in device_ids]
+    args.gpu = args.device_ids[0]
 
 if args.is_training:
     sign = 1

@@ -89,6 +89,6 @@ def change_sampling_frequency(file_path, frequency):
     daily_max.to_csv(save_path, mode='w', encoding='UTF-8')
 
 if __name__ == "__main__":
-    file_path = "../Electricity/htyqAzbdz_YC0037_m5_pre.csv"
-    # fill_and_smooth(file_path, '1h')
-    change_sampling_frequency(file_path,"15T")
+    # file_path = "../Electricity/XXX.csv"
+    # fill_and_smooth(file_path, '5T')
+    # change_sampling_frequency(file_path,"15T")
