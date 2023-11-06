@@ -110,10 +110,14 @@ if args.is_training:
             itr_means.insert(0, 'dataset', ii)
             itr_means.insert(0, 'model', args.model)
             # Save result to CSV file (create if it doesn't exist; append data if it already exists)
-            # 这里路径的改一下 改成结果下的路径
+
+            folder_path = './results/' + current_setting + '/'
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+
             if sign:
-                itr_means.to_csv('metrics.csv', mode='w',index=False)
+                itr_means.to_csv(folder_path + 'metrics.csv', mode='w',index=False)
                 sign = 0
             else:
-                itr_means.to_csv('metrics.csv', mode='a', header=False, index=False)
+                itr_means.to_csv(folder_path + 'metrics.csv', mode='a', header=False, index=False)
     print('####  task finish    ##########')

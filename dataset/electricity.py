@@ -150,7 +150,6 @@ def data_provider_electricity(args, flag):
         freq = args.freq
 
     data_set = Dataset_Electricity(
-        # 这个路径需要指定吗？
         dataset_path=args.dataset_path,
         data_path=args.data_path,
         size=[args.seq_len, args.label_len, args.pred_len],
