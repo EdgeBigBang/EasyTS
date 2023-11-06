@@ -13,16 +13,13 @@ def download(url: str, file_path: str) -> None:
     :param file_path: Where to download the content.
     """
 
-    # 打印下载进度
+    # Print download progress
     def progress(count, block_size, total_size):
         progress_pct = min(float(count * block_size) / float(total_size) * 100.0,100.0)
-        # 打印到当前的窗口中，这个函数即是print的实现
         sys.stdout.write('\rDownloading {} to {} {:.1f}%'.format(url, file_path, progress_pct))
-        # 将缓冲区的内容输出，这里有一个有意思的地方当写入时出现/n 即换行 则会自动将缓冲区的内容输出
-        # 这里主要实现一个实时打印进度的效果
         sys.stdout.flush()
 
-    # 检查是否存在文件
+    # Check if there are files present
     if not os.path.isfile(file_path):
         opener = request.build_opener()
         opener.addheaders = [('User-agent', 'Mozilla/5.0')]
