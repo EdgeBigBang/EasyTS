@@ -8,9 +8,6 @@ from utils.timefeatures import time_features
 import warnings
 warnings.filterwarnings('ignore')
 
-DATASET_PATH = './Electricity/'
-SubDataset = ['FOOD1', 'FOOD2', 'FOOD3','MANU', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
-URL_TEMPLATE = 'http://gitlab.fei8s.com/tianchengZhang/dastaset-for-timeseries/-/raw/main/Electricity/{}.csv'
 logging.basicConfig(level=logging.DEBUG)
 
 # Inherit dataset
@@ -43,7 +40,7 @@ class Dataset_Electricity(Dataset):
         self.scaler = StandardScaler()
         file_path = os.path.join(self.dataset_path, self.data_path)
         if not os.path.isfile(file_path):
-            self.download(self.dataset_path, self.data_path)
+            raise Exception('Dataset file not found')
         df_raw = pd.read_csv(file_path)
 
         # Reorder columns [date, ...features..., target]
@@ -146,4 +143,4 @@ def data_provider_custom(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-
+    pass
