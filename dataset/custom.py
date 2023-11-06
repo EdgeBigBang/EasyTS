@@ -111,31 +111,8 @@ class Dataset_Electricity(Dataset):
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
-    @staticmethod
-    def download(subdataset, dataset_path=DATASET_PATH):
-        """Download Electricity dataset if doesn't exist.
+def data_provider_custom(args, flag):
 
-           Args:
-                dataset_path(str): The path where the downloaded dataset is stored
-                subdataset(str): The subdataset to be downloaded
-        """
-        if not os.path.isdir(dataset_path):
-            os.makedirs(dataset_path)
-            logging.info(f' {dataset_path} does not exist, creation successful.')
-        assert subdataset in SubDataset
-        URL = URL_TEMPLATE.format(subdataset)
-        data_path = subdataset + ".csv"
-        FILE_PATH = os.path.join(dataset_path, data_path)
-
-        download(URL, FILE_PATH)
-
-        return data_path, dataset_path
-
-
-def data_provider_electricity(args, flag):
-    """
-    Provide Electricity data. list:['FOOD1', 'FOOD2', 'FOOD3','MANU', 'PHAR1', 'PHAR2', 'OFFICEh','OFFICEm','ETTh1','ETTh2','ETTm1','ETTm2','electricity']
-    """
     timeenc = 0 if args.embed != 'timeF' else 1
 
     if flag == 'test':
@@ -150,7 +127,6 @@ def data_provider_electricity(args, flag):
         freq = args.freq
 
     data_set = Dataset_Electricity(
-
         dataset_path=args.dataset_path,
         data_path=args.data_path,
         size=[args.seq_len, args.label_len, args.pred_len],
@@ -170,5 +146,4 @@ def data_provider_electricity(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    # Download a specific subset of data separately
-    Dataset_Electricity.download(DATASET_PATH, 'FOOD1')
+

@@ -110,7 +110,6 @@ if args.is_training:
             itr_means.insert(0, 'dataset', ii)
             itr_means.insert(0, 'model', args.model)
             # Save result to CSV file (create if it doesn't exist; append data if it already exists)
-            # 这里路径的改一下 改成结果下的路径
             if sign:
                 itr_means.to_csv('metrics.csv', mode='w',index=False)
                 sign = 0
