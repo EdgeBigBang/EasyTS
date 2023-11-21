@@ -38,7 +38,7 @@ parser.add_argument('--freq', type=str, default='t',
                     help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, '
                          'b:business days, w:weekly, m:monthly], you can also use more detailed freq like 15min or 3h')
 parser.add_argument('--target', type=str, default='OT', help='target feature in S or MS task following by Informer')
-parser.add_argument('--features', type=str, default='S',
+parser.add_argument('--features', type=str, default='M',
                     help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, '
                          'S:univariate predict univariate, MS:multivariate predict univariate')
 parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
@@ -46,7 +46,7 @@ parser.add_argument('--label_len', type=int, default=48, help='start token lengt
 parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
 
 # Optimization
-parser.add_argument('--batch_size', type=int, default=1, help='batch size of train input data')
+parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
 parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
 parser.add_argument('--itr', type=int, default=3, help='The final score is the average of the number of experiments')
 parser.add_argument('--training_metric', type=str, default='mse', help='metric during training')
