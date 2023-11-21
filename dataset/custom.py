@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 logging.basicConfig(level=logging.DEBUG)
 
 # Inherit dataset
-class Dataset_Electricity(Dataset):
+class Dataset_Custom(Dataset):
     def __init__(self, dataset_path, data_path, size, flag='train',
                  features='S', target='OT', scale=True, timeenc=0, freq='5min'):
 
@@ -123,7 +123,7 @@ def data_provider_custom(args, flag):
         batch_size = args.batch_size
         freq = args.freq
 
-    data_set = Dataset_Electricity(
+    data_set = Dataset_Custom(
         dataset_path=args.dataset_path,
         data_path=args.data_path,
         size=[args.seq_len, args.label_len, args.pred_len],
