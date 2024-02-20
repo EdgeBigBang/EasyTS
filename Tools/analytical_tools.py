@@ -9,6 +9,8 @@ import numpy as np
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 from plotly.subplots import make_subplots
+from statsmodels.tsa.stattools import acf, adfuller
+from vmdpy import VMD
 
 # Convert sampling frequency to corresponding data points
 Sampling_points_day = {"1h": 24, "15T": 96, "5T": 288}
@@ -319,14 +321,79 @@ def draw_ma_decomp(file_path, window_size=24):
     fig.update_layout(height=500, width=600, title_text=title)
     fig.show(renderer='browser')
 
+def draw_ADF(file_path):
+    '''
+        Using ADF test to measure the stationarity of time series
+
+         Agrs:
+            file_path(str): The path to read the dataset
+    '''
+    df = pd.read_csv(file_path, usecols=['OT', 'date'])
+    series = df['OT']
+
+    adf_result = adfuller(series, autolag='AIC')
+
+    adf_statistic = adf_result[0]  # ADF Test Statistic
+    p_value = adf_result[1]  # p-value
+    critical_values = adf_result[4]  # Critical Values
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(x=['ADF Statistic'], y=[adf_statistic], name='ADF Statistic',
+                         text=[f'{adf_statistic:.2f}'], textposition='auto'))
+
+    for key, value in critical_values.items():
+        fig.add_trace(go.Bar(x=[f'Critical Value ({key})'], y=[value], name=f'Critical Value ({key})',
+                             text=[f'{value:.2f}'], textposition='auto'))
+
+    fig.update_layout(title='ADF Test Statistic vs. Critical Values',
+                      xaxis_title='Metric',
+                      yaxis_title='Value',
+                      barmode='group')
+
+    fig.show(renderer='browser')
+
+def estimate_lyapunov(file_path, embed_dim=2, tau=1, min_divergence=0.5, max_iter=100):
+    df = pd.read_csv(file_path, usecols=['OT', 'date'])
+    series = df['OT']
+
+    N = len(series)
+    phase_space = np.empty((N - (embed_dim - 1) * tau, embed_dim))
+    for i in range(embed_dim):
+        phase_space[:, i] = series[i * tau:i * tau + phase_space.shape[0]]
+
+    N = phase_space.shape[0]
+
+    # Find nearest neighbors in phase space
+    neighbors = np.empty(N, dtype=int)
+    for i in range(N):
+        distances = np.linalg.norm(phase_space - phase_space[i, :], axis=1)
+        distances[i] = np.inf
+        neighbors[i] = np.argmin(distances)
+
+    divergence = np.empty(max_iter)
+    for i in range(max_iter):
+        valid_indices = (neighbors < N - i)
+        if not np.any(valid_indices):
+            break
+
+        distances = np.linalg.norm(phase_space[valid_indices] - phase_space[neighbors[valid_indices] + i], axis=1)
+        valid = distances > min_divergence
+        if np.any(valid):
+            divergence[i] = np.mean(np.log(distances[valid]))
+        else:
+            divergence[i] = 0
+
+    valid_divergence = divergence[:np.max(np.nonzero(valid_indices))]
+    print("Estimated Lyapunov Exponent:", np.polyfit(np.arange(len(valid_divergence)), valid_divergence, 1)[0])
 
 if __name__ == "__main__":
     ## Dataset Path
-    file_path = "../Electricity/OFFICEh.csv"
+    file_path = "../dataset/Electricity/FOOD1.csv"
 
     ## Using different analytical methods
     # draw_month(file_path)
-    draw_day(file_path,'1h')
+    # draw_day(file_path,'5T')
     # draw_frequency_max(file_path, '1D')
     # draw_histogram(file_path)
     # draw_box(file_path)
@@ -335,3 +402,5 @@ if __name__ == "__main__":
     # hide_hour(file_path)
     # draw_FFT_count(file_path)
     # draw_ma_decomp(file_path)
+    # draw_ADF(file_path)
+    estimate_lyapunov(file_path)
