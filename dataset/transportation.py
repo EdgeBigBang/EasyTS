@@ -171,4 +171,4 @@ def data_provider_transportation(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Transportation.download(DATASET_PATH, 'METR_LA')
+    Dataset_Transportation.download('METR_LA')

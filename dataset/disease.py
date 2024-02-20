@@ -170,4 +170,4 @@ def data_provider_disease(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Disease.download(DATASET_PATH, 'illness')
+    Dataset_Disease.download('illness')

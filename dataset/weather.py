@@ -170,4 +170,4 @@ def data_provider_weather(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Weather.download(DATASET_PATH, 'Weather')
+    Dataset_Weather.download('Weather')

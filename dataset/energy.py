@@ -170,4 +170,4 @@ def data_provider_energy(args, flag):
     return data_set, data_loader
 
 if __name__ == '__main__':
-    Dataset_Energy.download(DATASET_PATH, 'Solar')
+    Dataset_Energy.download('Solar')
